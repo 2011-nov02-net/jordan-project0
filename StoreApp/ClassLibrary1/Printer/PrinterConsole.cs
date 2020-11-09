@@ -6,6 +6,10 @@ namespace StoreApp.Library.Printer
 {
     class PrinterConsole : IPrint
     {
+        public void PrintStores(DataBase db)
+        {
+
+        }
         public void PrintAddOrder(Order transaction)
         {
             Console.WriteLine("Order Added Your total is: " + transaction.GetCost());

@@ -9,8 +9,7 @@ namespace StoreApp.Library
 {
     public class Store
     {
-        private static int StoreSeed = 3219032;
-        private static int transactionNumberSeed = 21312345;
+        private static int StoreSeed = 101;
 
         private int StoreID { get; set; }
         private int Zip { get; set; }
@@ -60,6 +59,10 @@ namespace StoreApp.Library
         public void printOrders()
         {
             print.PrintOrderHistory(orderHistory);
+        }
+        public string getData()
+        {
+            return $"{StoreID} | {Zip}";
         }
     }
 }

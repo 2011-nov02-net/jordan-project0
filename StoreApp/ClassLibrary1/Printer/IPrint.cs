@@ -12,5 +12,6 @@ namespace StoreApp.Library.Printer
         void PrintCustomers(List<Customer> customers);
         void PrintOrderHistory(List<Order> orderHistory);
         void PrintCustomersOrders(List<Order> orderHistory);
+
     }
 }

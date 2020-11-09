@@ -8,8 +8,8 @@ namespace StoreApp.AppConsole
     {
         static void Main(string[] args)
         {
-            Store Walmart = new Store(99999);
-            UserIntrerface.addSampleData(Walmart);
+            DataBase db = new DataBase();
+            UserIntrerface.addSampleData(db);
 
             Console.WriteLine("at the main Menu type 'h' for help or 'q' to quit.");
 
@@ -17,7 +17,7 @@ namespace StoreApp.AppConsole
 
             while (userInput != "q")
             {
-                UserIntrerface.selectScreen(Walmart, userInput);
+                UserIntrerface.selectScreen(db[0], userInput);
                 userInput = Console.ReadLine();
             }
 

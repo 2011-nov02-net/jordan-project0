@@ -68,37 +68,40 @@ namespace StoreApp.AppConsole
             store.AddCustomer(new Customer(firstName, lastName, email, phone));
 
         }
-        public static void addSampleData(Store store)
+        public static void addSampleData(DataBase db)
         {
+            Store Walmart = new Store(99999);
+            Store Target = new Store(99999);
 
+            db.addStore(Walmart);
             //adding inventory
-            store.AddInventory(new Product(1, "orange", 3, 21.12));
-            store.AddInventory(new Product(2, "bannanna", 123, .68));
-            store.AddInventory(new Product(1, "Bread", 3, 21.12));
-            store.AddInventory(new Product(2, "Milk", 23, 3.00));
-            store.AddInventory(new Product(2, "Water", 5, 3.00));
+            db[0].AddInventory(new Product(1, "orange", 3, 21.12));
+            db[0].AddInventory(new Product(2, "bannanna", 123, .68));
+            db[0].AddInventory(new Product(1, "Bread", 3, 21.12));
+            db[0].AddInventory(new Product(2, "Milk", 23, 3.00));
+            db[0].AddInventory(new Product(2, "Water", 5, 3.00));
 
 
             //adding customers
-            store.AddCustomer(new Customer("Luke", "Fisher", "lf@gmail.com", "877-CASH-NOW"));
+            db[0].AddCustomer(new Customer("Luke", "Fisher", "lf@gmail.com", "877-CASH-NOW"));
 
 
             // making order
-            Order newOrder = new Order(store.getId(), "Luke", "Fisher");
-            newOrder.addItem(store.getInventory(0), 4);
-            newOrder.addItem(store.getInventory(1), 2);
+            Order newOrder = new Order(db[0].getId(), "Luke", "Fisher");
+            newOrder.addItem(db[0].getInventory(0), 4);
+            newOrder.addItem(db[0].getInventory(1), 2);
 
             // adding Order
-            store.AddOrder(newOrder);
+            db[0].AddOrder(newOrder);
 
-            store.AddCustomer(new Customer("Joseph", "Joestar", "jj@gmail.com", "733-343-2314"));
+            db[0].AddCustomer(new Customer("Joseph", "Joestar", "jj@gmail.com", "733-343-2314"));
             ///making order
-            Order Order2 = new Order(store.getId(), "Joseph", "Joestar");
-            Order2.addItem(store.getInventory(3), 2);
-            Order2.addItem(store.getInventory(4), 2);
+            Order Order2 = new Order(db[0].getId(), "Joseph", "Joestar");
+            Order2.addItem(db[0].getInventory(3), 2);
+            Order2.addItem(db[0].getInventory(4), 2);
 
             //adding order
-            store.AddOrder(Order2);
+            db[0].AddOrder(Order2);
 
         }
 
