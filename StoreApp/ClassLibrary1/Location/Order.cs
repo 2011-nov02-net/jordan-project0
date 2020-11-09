@@ -12,6 +12,9 @@ namespace StoreApp.Library
         private string CustLastName { get; set; }
         private List<Product> items = new List<Product>();
         private string _timeStamp { get; set; }
+        private static int transactionNumberSeed =21312345;
+
+        private int TransactionNumber{ get; set; }
         private string setTime()
         {
                 DateTime localDate = DateTime.Now;
@@ -23,20 +26,35 @@ namespace StoreApp.Library
             {
                 double _cost = 0;
                 foreach (Product item in items) {
-                    _cost += item.getPrice();
+                    _cost += item.getPrice() * item.getQuantity();
                 }
                 return _cost;
             }
         }
-        public void addItem( Product item)
+        public void addItem( Product item, int quanity)
         {
-            items.Add(item);
+            Product boughtItem = new Product(item, quanity);
+            if (item.getQuantity() > quanity)
+            {
+                item.updateQuantity(-quanity);
+                Console.WriteLine("item Added Successfully");
+            }
+            else
+            {
+                boughtItem.updateQuantity(-quanity);
+                Console.WriteLine("Item not added, not enough in inventory");
+            }
+
+            items.Add(boughtItem);
         }
         public Order(int storeId, string custFirstName, string custLastName)
         {
             StoreId = storeId;
             CustFirstName = custFirstName;
             CustLastName = custLastName;
+            transactionNumberSeed = transactionNumberSeed + 1;
+            TransactionNumber = transactionNumberSeed;
+
             _timeStamp = setTime();
 
         }
@@ -46,6 +64,8 @@ namespace StoreApp.Library
             CustFirstName = custFirstName;
             CustLastName = custLastName;
             _timeStamp = time;
+            transactionNumberSeed = transactionNumberSeed + 1;
+            transactionNumberSeed++;
 
         }
         public double GetCost()
@@ -53,7 +73,13 @@ namespace StoreApp.Library
             return Cost;
         }
         public string getData() {
-            return $"{StoreId}";
+            string data = "";
+            data = $"Store: {StoreId} | Transaction Number: {TransactionNumber} | {_timeStamp} | {CustFirstName} | {CustLastName} | {Cost}";
+            foreach (var item in items)
+            {
+                data += "\n    " + item.getProductInfo();
+            }
+            return data;
         }
     }
 }

@@ -10,6 +10,7 @@ namespace StoreApp.Library
     public class Store
     {
         private static int StoreSeed = 3219032;
+        private static int transactionNumberSeed = 21312345;
 
         private int StoreID { get; set; }
         private int Zip { get; set; }
@@ -40,7 +41,7 @@ namespace StoreApp.Library
             print.PrintAddOrder(transaction);
 
         }
-        public Product getInventory(int index, int quanity)
+        public Product getInventory(int index)
         {
             return inventory[index];
         }

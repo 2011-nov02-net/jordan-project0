@@ -40,6 +40,14 @@ namespace StoreApp.Library.Printer
         {
             Console.WriteLine();
         }
+        public static void PrintAddedItemSuccessfull()
+        {
+            Console.WriteLine("Item Added Successful");
+        }
+        public static void PrintAddedItemUnsucessfull()
+        {
+            Console.WriteLine("Item Not added");
+        }
 
     }
 }
