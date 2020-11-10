@@ -20,7 +20,6 @@ namespace StoreApp.Library
         {
             return Name;
         }
-
         public Product(int productID,  string name, int quantity, double price)
         {
             ProductID = productID;
@@ -37,15 +36,23 @@ namespace StoreApp.Library
         }
         public string getProductInfo()
         {
-            return $"Product ID: {ProductID} | {Name} | Q: {Quantity} | {_price}";
+            return $"Product ID: {ProductID} | {Name} | Q: {Quantity} | price: {_price}";
         }
-        public void updateQuantity(int Amount)
+        public void updateQuantity(int amount)
         {
-            Quantity += Amount;
+            Quantity += amount;
+        }
+        public void setQuantity(int amount)
+        {
+            Quantity = amount;
         }
         public int getQuantity()
         {
             return Quantity;
+        }
+        public int getID()
+        {
+            return ProductID;
         }
     }
 }

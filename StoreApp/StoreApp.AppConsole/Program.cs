@@ -11,16 +11,19 @@ namespace StoreApp.AppConsole
             DataBase db = new DataBase();
             UserIntrerface.addSampleData(db);
 
-            Console.WriteLine("at the main Menu type 'h' for help or 'q' to quit.");
+            Console.WriteLine("at the main Menu type 'q' to quit.");
+            Console.WriteLine("Need to (p)rint, (s)earch for customers, (a)dd a customer");
 
             string userInput = Console.ReadLine();
 
             while (userInput != "q")
             {
-                UserIntrerface.selectScreen(db[0], userInput);
+                UserIntrerface.selectScreen(db, userInput);
                 userInput = Console.ReadLine();
             }
 
         }
+
     }
+
 }

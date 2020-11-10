@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreApp.AppConsole", "StoreApp.AppConsole\StoreApp.AppConsole.csproj", "{7E412E96-1283-43F2-B078-FDD05AE43A58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreApp.AppConsole", "StoreApp.AppConsole\StoreApp.AppConsole.csproj", "{7E412E96-1283-43F2-B078-FDD05AE43A58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreApp.Library", "ClassLibrary1\StoreApp.Library.csproj", "{0E506FCC-A679-431E-A438-F379EA04D1AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreApp.Library", "ClassLibrary1\StoreApp.Library.csproj", "{0E506FCC-A679-431E-A438-F379EA04D1AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

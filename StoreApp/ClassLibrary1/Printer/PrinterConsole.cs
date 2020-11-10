@@ -6,9 +6,12 @@ namespace StoreApp.Library.Printer
 {
     class PrinterConsole : IPrint
     {
-        public void PrintStores(DataBase db)
+        public void PrintStores(List<Store> database)
         {
-
+            foreach(var store in database)
+            {
+                Console.WriteLine(store.getData());
+            }
         }
         public void PrintAddOrder(Order transaction)
         {
@@ -44,11 +47,11 @@ namespace StoreApp.Library.Printer
         {
             Console.WriteLine();
         }
-        public static void PrintAddedItemSuccessfull()
+        public void PrintAddedItemSuccessfull()
         {
-            Console.WriteLine("Item Added Successful");
+            Console.WriteLine("Item Added/Set Successful");
         }
-        public static void PrintAddedItemUnsucessfull()
+        public void PrintAddedItemUnsucessfull()
         {
             Console.WriteLine("Item Not added");
         }

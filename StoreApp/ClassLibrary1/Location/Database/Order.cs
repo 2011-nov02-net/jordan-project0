@@ -34,7 +34,7 @@ namespace StoreApp.Library
         public void addItem( Product item, int quanity)
         {
             Product boughtItem = new Product(item, quanity);
-            if (item.getQuantity() > quanity)
+            if (item.getQuantity() >= quanity)
             {
                 item.updateQuantity(-quanity);
                 Console.WriteLine("item Added Successfully");
@@ -68,9 +68,21 @@ namespace StoreApp.Library
             transactionNumberSeed++;
 
         }
+
+        // returns the cost
         public double GetCost()
         {
             return Cost;
+        }
+        // returns the first name
+        public string getFirstName()
+        {
+            return CustFirstName;
+        }
+        // returns the last name
+        public string getLastName()
+        {
+            return CustLastName;
         }
         public string getData() {
             string data = "";
