@@ -5,6 +5,7 @@ using System.Text;
 using StoreApp.Library;
 using StoreApp.Library.Printer;
 using StoreApp.Library.Location.Search;
+using StoreApp.Library.Location.Serialize;
 
 namespace StoreApp.AppConsole
 {
@@ -154,6 +155,10 @@ namespace StoreApp.AppConsole
 
             //adding order
             db[0].AddOrder(Order2);
+
+            WriteData toDisk = new WriteData(db, "db");
+
+            
 
         }
 

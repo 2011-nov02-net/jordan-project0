@@ -15,7 +15,7 @@ namespace StoreApp.Library.Printer
         }
         public void PrintAddOrder(Order transaction)
         {
-            Console.WriteLine("Order Added Your total is: " + transaction.GetCost());
+            Console.WriteLine("Order Added Your total is: " + transaction.Cost);
         }
         public void PrintAddInventory()
         {

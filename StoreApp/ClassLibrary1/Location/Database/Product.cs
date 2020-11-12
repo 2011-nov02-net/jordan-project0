@@ -7,13 +7,11 @@ namespace StoreApp.Library
 {
     public class Product
     {
-        private int ProductID { get; set; }
-        private string Name { get; set; }
-        private double _price;
-        public double getPrice() {
-            return _price;
-        }
-        private int Quantity { get; set; }
+        public int ProductID { get; private set; }
+        public string Name { get; private set; }
+        public double Price { get; set; }
+
+        public int Quantity { get; set; }
 
 
         public string getName()
@@ -25,18 +23,18 @@ namespace StoreApp.Library
             ProductID = productID;
             Name = name;
             Quantity = quantity;
-            _price = price;
+            Price = price;
         }
         public Product(Product item, int quantity)
         {
             this.ProductID = item.ProductID;
             this.Name = item.Name;
             this.Quantity = quantity;
-            this._price = item._price;
+            this.Price = item.Price;
         }
         public string getProductInfo()
         {
-            return $"Product ID: {ProductID} | {Name} | Q: {Quantity} | price: {_price}";
+            return $"Product ID: {ProductID} | {Name} | Q: {Quantity} | price: {Price}";
         }
         public void updateQuantity(int amount)
         {
@@ -46,10 +44,7 @@ namespace StoreApp.Library
         {
             Quantity = amount;
         }
-        public int getQuantity()
-        {
-            return Quantity;
-        }
+
         public int getID()
         {
             return ProductID;

@@ -11,7 +11,7 @@ namespace StoreApp.Library.Location.Search
             string returnedCustomer = "";
             foreach(var person in customers)
             {
-                if (person.GetFirstName().ToLower() == firstName.ToLower())
+                if (person.FirstName.ToLower() == firstName.ToLower())
                 {
                     returnedCustomer+=person.getCustomer();
                 }
@@ -23,7 +23,7 @@ namespace StoreApp.Library.Location.Search
             string returnedCustomer = "";
             foreach (var person in customers)
             {
-                if (person.GetLastName() == lastName)
+                if (person.LastName == lastName)
                 {
                     returnedCustomer += person.getCustomer();
                 }
@@ -35,7 +35,7 @@ namespace StoreApp.Library.Location.Search
             string returnedCustomer = "";
             foreach (var person in customers)
             {
-                if (person.getID()== id)
+                if (person.ID== id)
                 {
                     returnedCustomer += person.getCustomer();
                 }

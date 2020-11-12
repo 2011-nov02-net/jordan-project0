@@ -7,12 +7,25 @@ namespace StoreApp.Library
 {
     public class Order
     {
-        private int StoreId { get; set; }
-        private string CustFirstName { get; set; }
-        private string CustLastName { get; set; }
+        public int StoreId { get; set; }
+        public string CustFirstName { get; set; }
+        public string CustLastName { get; set; }
         private List<Product> items = new List<Product>();
-        private string _timeStamp { get; set; }
-        private static int transactionNumberSeed =21312345;
+        public string _timeStamp { get; set; }
+        private  static int transactionNumberSeed =21312345;
+        public double Cost
+        {
+            get
+            {
+                double _cost = 0;
+                foreach (Product item in items)
+                {
+                    _cost += item.Price * item.Quantity;
+                }
+                return _cost;
+            }
+        }
+        public List<Product> Items => items;
 
         private int TransactionNumber{ get; set; }
         private string setTime()
@@ -20,21 +33,11 @@ namespace StoreApp.Library
                 DateTime localDate = DateTime.Now;
                 return localDate.ToString();
         }
-        private double Cost
-        {
-            get
-            {
-                double _cost = 0;
-                foreach (Product item in items) {
-                    _cost += item.getPrice() * item.getQuantity();
-                }
-                return _cost;
-            }
-        }
+
         public void addItem( Product item, int quanity)
         {
             Product boughtItem = new Product(item, quanity);
-            if (item.getQuantity() >= quanity)
+            if (item.Quantity >= quanity)
             {
                 item.updateQuantity(-quanity);
                 Console.WriteLine("item Added Successfully");
@@ -69,11 +72,6 @@ namespace StoreApp.Library
 
         }
 
-        // returns the cost
-        public double GetCost()
-        {
-            return Cost;
-        }
         // returns the first name
         public string getFirstName()
         {

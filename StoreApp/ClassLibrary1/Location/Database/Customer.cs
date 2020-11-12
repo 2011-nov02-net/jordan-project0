@@ -6,17 +6,13 @@ namespace StoreApp.Library
 {
     public class Customer
     {
-        private static int customerIDSeed = 0;
-        private string FirstName { get; set; }
-        private string LastName { get; set; }
-        private string Email { get; set; }
-        private string Phone { get; set; }
-        private string ID { get; set; }
+        private static int customerIDSeed = 1;
+        public string ID { get; set; }
 
-        public string GetFirstName() => FirstName;
-        public string GetLastName() => LastName;
-        public string getPhone() => Phone;
-        public string getID() => ID;
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
     
         public Customer(string fName, string lName, string email, string phone)
         {
@@ -25,6 +21,8 @@ namespace StoreApp.Library
             LastName = lName;
             Email = email;
             Phone = phone;
+            customerIDSeed++;
+
 
         }
         public Customer(string id, string fName, string lName, string email, string phone)
@@ -34,6 +32,7 @@ namespace StoreApp.Library
             LastName = lName;
             Email = email;
             Phone = phone;
+            customerIDSeed++;
         }
 
         public string getCustomer()

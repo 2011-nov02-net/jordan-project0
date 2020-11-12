@@ -1,6 +1,7 @@
 ﻿using StoreApp.Library;
 using System;
 using System.Collections.Generic;
+using StoreApp.Library.Location.Serialize;
 
 namespace StoreApp.AppConsole
 {
@@ -21,6 +22,8 @@ namespace StoreApp.AppConsole
                 UserIntrerface.selectScreen(db, userInput);
                 userInput = Console.ReadLine();
             }
+            new WriteData(db, "db.json");
+
 
         }
 

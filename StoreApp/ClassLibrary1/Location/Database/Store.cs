@@ -13,16 +13,19 @@ namespace StoreApp.Library
         private static int StoreSeed = 101;
 
         //fields
-        private int StoreID { get; set; }
-        private string Name { get; set; }
-        private string Stree { get; set; }
-        private string City { get; set; }
-        private string State { get; set; }
-        private int Zip { get; set; }
+        public int StoreID { get; set; }
+        public string Name { get; set; }
+        public string Stree { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public int Zip { get; set; }
 
         // each store has an inventory customer and order history
         private List<Product> inventory = new List<Product>();
         private List<Order> orderHistory = new List<Order>();
+
+        public List<Product> Inventory => inventory;
+        public List<Order> Order => orderHistory;
 
         //create print object
         private readonly IPrint print = new PrinterConsole();
