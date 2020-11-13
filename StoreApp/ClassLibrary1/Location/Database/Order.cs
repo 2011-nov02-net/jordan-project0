@@ -7,12 +7,15 @@ namespace StoreApp.Library
 {
     public class Order
     {
-        public int StoreId { get; set; }
+        public int TransactionNumber{get; private set;}
+        public int StoreId { get; private set; }
         public string CustFirstName { get; set; }
         public string CustLastName { get; set; }
+        public string _timeStamp { get; private set; }
+
         private List<Product> items = new List<Product>();
-        public string _timeStamp { get; set; }
-        private  static int transactionNumberSeed =21312345;
+
+        private static int transactionNumberSeed =21312345;
         public double Cost
         {
             get
@@ -27,7 +30,6 @@ namespace StoreApp.Library
         }
         public List<Product> Items => items;
 
-        private int TransactionNumber{ get; set; }
         private string setTime()
         {
                 DateTime localDate = DateTime.Now;
@@ -50,6 +52,12 @@ namespace StoreApp.Library
 
             items.Add(boughtItem);
         }
+        /// <summary>
+        /// A constructor for orders that are new
+        /// </summary>
+        /// <param name="storeId"></param>
+        /// <param name="custFirstName"></param>
+        /// <param name="custLastName"></param>
         public Order(int storeId, string custFirstName, string custLastName)
         {
             StoreId = storeId;
@@ -61,6 +69,13 @@ namespace StoreApp.Library
             _timeStamp = setTime();
 
         }
+        /// <summary>
+        /// A cunstructor for orders taht are read
+        /// </summary>
+        /// <param name="storeId"></param>
+        /// <param name="custFirstName"></param>
+        /// <param name="custLastName"></param>
+        /// <param name="time"></param>
         public Order(int storeId, string custFirstName, string custLastName, string time)
         {
             StoreId = storeId;
@@ -82,12 +97,12 @@ namespace StoreApp.Library
         {
             return CustLastName;
         }
-        public string getData() {
+        public override string ToString() {
             string data = "";
             data = $"Store: {StoreId} | Transaction Number: {TransactionNumber} | {_timeStamp} | {CustFirstName} | {CustLastName} | {Cost}";
             foreach (var item in items)
             {
-                data += "\n    " + item.getProductInfo();
+                data += "\n    " + item.ToString();
             }
             return data;
         }

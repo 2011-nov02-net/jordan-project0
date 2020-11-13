@@ -25,7 +25,7 @@ namespace StoreApp.Library.Printer
         {
             foreach(var item in inventory )
             {
-                Console.WriteLine(item.getProductInfo());
+                Console.WriteLine(item.ToString());
             }
         }
         public void PrintCustomers(List<Customer> customers)
@@ -39,7 +39,7 @@ namespace StoreApp.Library.Printer
         {
             foreach(var order in orderHistory)
             {
-                Console.WriteLine(order.getData());
+                Console.WriteLine(order.ToString());
 
             }
         }

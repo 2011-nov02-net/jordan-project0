@@ -15,5 +15,6 @@ namespace StoreApp.Library.Location.Serialize
             File.WriteAllText(filePath, json);
         }
 
+
     }
 }

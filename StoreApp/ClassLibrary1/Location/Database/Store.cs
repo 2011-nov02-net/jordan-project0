@@ -15,7 +15,7 @@ namespace StoreApp.Library
         //fields
         public int StoreID { get; set; }
         public string Name { get; set; }
-        public string Stree { get; set; }
+        public string Street { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public int Zip { get; set; }
@@ -77,7 +77,7 @@ namespace StoreApp.Library
             bool searchSuccess = false;
             foreach (var item in inventory)
             {
-                if(item.getID() == ID)
+                if(item.ProductID == ID)
                 {
                     if (choice == "u")
                         item.updateQuantity(quantity);

@@ -35,7 +35,7 @@ namespace StoreApp.Library.Location.Search
             string returnedCustomer = "";
             foreach (var person in customers)
             {
-                if (person.ID== id)
+                if (person.CustomerId== id)
                 {
                     returnedCustomer += person.getCustomer();
                 }

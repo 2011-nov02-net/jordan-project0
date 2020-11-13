@@ -8,7 +8,8 @@ namespace StoreApp.AppConsole
     class Program
     {
         static void Main(string[] args)
-        {
+        { 
+            
             DataBase db = new DataBase();
             UserIntrerface.addSampleData(db);
 
@@ -23,7 +24,7 @@ namespace StoreApp.AppConsole
                 userInput = Console.ReadLine();
             }
             new WriteData(db, "db.json");
-
+            
 
         }
 

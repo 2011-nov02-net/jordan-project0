@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StoreApp.Libraray2
+namespace Database.Library
 {
     public class Class1
     {

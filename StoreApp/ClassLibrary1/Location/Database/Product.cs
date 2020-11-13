@@ -13,11 +13,6 @@ namespace StoreApp.Library
 
         public int Quantity { get; set; }
 
-
-        public string getName()
-        {
-            return Name;
-        }
         public Product(int productID,  string name, int quantity, double price)
         {
             ProductID = productID;
@@ -32,7 +27,7 @@ namespace StoreApp.Library
             this.Quantity = quantity;
             this.Price = item.Price;
         }
-        public string getProductInfo()
+        public override string ToString()
         {
             return $"Product ID: {ProductID} | {Name} | Q: {Quantity} | price: {Price}";
         }
@@ -43,11 +38,6 @@ namespace StoreApp.Library
         public void setQuantity(int amount)
         {
             Quantity = amount;
-        }
-
-        public int getID()
-        {
-            return ProductID;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace StoreApp.Library.Location.Search
             foreach(var order in orderHistory)
             {
                 if (fName == order.getFirstName())
-                    returnedOrder = order.getData();
+                    returnedOrder = order.ToString();
             }
             return returnedOrder;
 

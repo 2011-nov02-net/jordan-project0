@@ -4,7 +4,7 @@ using System.Text;
 
 namespace StoreApp.Library.Location.Serialize
 {
-    class ReadData
+    class ReadData 
     {
     }
 }
