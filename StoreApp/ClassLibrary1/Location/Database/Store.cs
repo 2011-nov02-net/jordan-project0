@@ -18,13 +18,24 @@ namespace StoreApp.Library
         public string Street { get; set; }
         public string City { get; set; }
         public string State { get; set; }
-        public int Zip { get; set; }
+        public string Zip { get; set; }
 
         // each store has an inventory customer and order history
         private List<Product> inventory = new List<Product>();
         private List<Order> orderHistory = new List<Order>();
 
-        public List<Product> Inventory => inventory;
+        // replace inventory with user value;
+        public List<Product> Inventory
+        {
+            get
+            {
+                return inventory;
+            }
+            set
+            {
+                inventory = value;
+            }
+        }
         public List<Order> Order => orderHistory;
 
         //create print object
@@ -32,16 +43,26 @@ namespace StoreApp.Library
 
         //default constructor 
         //ADD MORE INFO FOR STORE
-        public Store (int zip)
-        {
-            StoreID = StoreSeed;
-            StoreSeed++;
+        public Store (int storeid, string name, string street, string city, string zip)
+        { 
+            StoreSeed = StoreID+1;
+            StoreID = storeid;
+            Name = name;
+            Street = street;
+            City = city;
             Zip = zip;
         }
-        // returns all the data in a string format
-        public string getData()
+        /// <summary>
+        /// Constructor for when we only want the id of the store
+        /// </summary>
+        public Store(int storeid)
         {
-            return $"{StoreID} |  {Zip}";
+            StoreID = storeid;
+        }
+        // returns all the data in a string format
+        public override string ToString()
+        {
+            return $"ID: {StoreID} | {Name} | {State} | {City} |  {Zip}";
         }
 
         // Add item to inventory to list
@@ -58,16 +79,11 @@ namespace StoreApp.Library
             print.PrintAddOrder(transaction);
 
         }
-        // reference inventory
+        // reference store by inventory index
         public Product getInventory(int index)
         {
             return inventory[index];
         }
-        public int getId()
-        {
-            return StoreID;
-        }
-
 
         public void printInventory() => print.PrintGetInventory(inventory);
         public void printOrders() => print.PrintOrderHistory(orderHistory);

@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary1\StoreApp.Library.csproj" />
+    <ProjectReference Include="..\StoreApp.DataModel\StoreApp.DataModel.csproj" />
   </ItemGroup>
 
 </Project>

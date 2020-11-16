@@ -12,8 +12,27 @@ namespace StoreApp.Library
     {
         private readonly IPrint print = new PrinterConsole();
         private List<Store> _stores = new List<Store>();
-        private List<Customer> customers = new List<Customer>();
-
+        private List<Customer> _customers = new List<Customer>();
+        private List<Order> _orders = new List<Order>();
+        // initialize a database with only customers
+        public DataBase(List<Store> stores)
+        {
+            Stores = stores;
+        }
+        // initialize a database with only one store
+        public DataBase(Store store)
+        {
+            Stores.Add(store);
+        }
+        public DataBase(Customer customer)
+        {
+            Customers.Add(customer);
+        }
+        // initialize a database with a list of customers
+        public DataBase (List <Customer> customers)
+        {
+            Customers = customers;
+        }
         public List<Store> Stores {
             get
             {
@@ -28,11 +47,11 @@ namespace StoreApp.Library
         {
             get
             {
-                return customers;
+                return _customers;
             }
             set
             {
-                customers = value;
+                _customers = value;
             }
         }
         // return store database by index
@@ -47,15 +66,16 @@ namespace StoreApp.Library
 
         //Store methods
         public void AddStore(Store store) => Stores.Add(store);
-        public void PrintStores(DataBase db) => print.PrintStores(Stores);
-
+        public void PrintStores() => print.PrintStores(Stores);
+        public void PrintOrders() => print.PrintOrderHistory(_orders);
+        public void AddOrder(Order transaction) => _orders.Add(transaction);
 
         // customer methods
-        public void printCustomers() =>print.PrintCustomers(customers);
-        public void AddCustomer(Customer customer) => customers.Add(customer);
-        public string customerSearchFirstName(string fName) => SearchCustomers.customerSearchFirstName(customers, fName);
-        public string customerSearchLastName(string lName) => SearchCustomers.customerSearchLastName(customers, lName);
-        public string customerSearchID(string id) => SearchCustomers.customerSearchFirstName(customers, id);
+        public void printCustomers() =>print.PrintCustomers(_customers);
+        public void AddCustomer(Customer customer) => _customers.Add(customer);
+        public string customerSearchFirstName(string fName) => SearchCustomers.customerSearchFirstName(_customers, fName);
+        public string customerSearchLastName(string lName) => SearchCustomers.customerSearchLastName(_customers, lName);
+        public string customerSearchID(string id) => SearchCustomers.customerSearchFirstName(_customers, id);
         public void searchStoreInventory(int id)=> SearchStore.ReturnStoreInventory(Stores, id);
         public void searchStoreOrder(int id) => SearchStore.ReturnStoreOrderHistory(Stores, id);
     }

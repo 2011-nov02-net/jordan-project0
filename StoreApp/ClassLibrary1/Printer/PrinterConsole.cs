@@ -10,7 +10,7 @@ namespace StoreApp.Library.Printer
         {
             foreach(var store in database)
             {
-                Console.WriteLine(store.getData());
+                Console.WriteLine(store.ToString());
             }
         }
         public void PrintAddOrder(Order transaction)

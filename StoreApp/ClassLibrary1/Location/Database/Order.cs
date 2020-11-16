@@ -9,10 +9,19 @@ namespace StoreApp.Library
     {
         public int TransactionNumber{get; private set;}
         public int StoreId { get; private set; }
+        public int CustomerId { get; set; }
         public string CustFirstName { get; set; }
         public string CustLastName { get; set; }
         public string _timeStamp { get; private set; }
 
+        public string TimeStamp
+        {
+            set
+            {
+                _timeStamp = value;
+            }
+        }
+        
         private List<Product> items = new List<Product>();
 
         private static int transactionNumberSeed =21312345;
@@ -52,6 +61,10 @@ namespace StoreApp.Library
 
             items.Add(boughtItem);
         }
+        public void addItem(Product item)
+        {
+            items.Add(item);
+        }
         /// <summary>
         /// A constructor for orders that are new
         /// </summary>
@@ -60,6 +73,7 @@ namespace StoreApp.Library
         /// <param name="custLastName"></param>
         public Order(int storeId, string custFirstName, string custLastName)
         {
+
             StoreId = storeId;
             CustFirstName = custFirstName;
             CustLastName = custLastName;
@@ -86,6 +100,36 @@ namespace StoreApp.Library
             transactionNumberSeed++;
 
         }
+        public Order(int transactionId,  int storeId, int customerId , string custFirstName, string custLastName, string time)
+        {
+            TransactionNumber = transactionId;
+            StoreId = storeId;
+            CustomerId = customerId;
+            CustFirstName = custFirstName;
+            CustLastName = custLastName;
+            _timeStamp = time;
+            transactionNumberSeed = transactionNumberSeed + 1;
+            transactionNumberSeed++;
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Order(int transactionId, int storeId, int customerId, string time)
+        {
+            TransactionNumber = transactionId;
+            StoreId = storeId;
+            CustomerId = customerId;
+            TimeStamp = time;
+
+        }
+        /// <summary>
+        /// Have an order that only needs the transaction number
+        /// </summary>
+        public Order(int id)
+        {
+            TransactionNumber = id;
+        }
 
         // returns the first name
         public string getFirstName()
@@ -99,7 +143,7 @@ namespace StoreApp.Library
         }
         public override string ToString() {
             string data = "";
-            data = $"Store: {StoreId} | Transaction Number: {TransactionNumber} | {_timeStamp} | {CustFirstName} | {CustLastName} | {Cost}";
+            data = $"Store: {StoreId} | Transaction Number: {TransactionNumber} | {_timeStamp} | Customer ID: {CustomerId} | Cost: ${Cost}";
             foreach (var item in items)
             {
                 data += "\n    " + item.ToString();

@@ -30,7 +30,7 @@ namespace StoreApp.Library.Location.Search
             }
             return returnedCustomer;
         }
-        public static string customerSearchID(List<Customer> customers, string id)
+        public static string customerSearchID(List<Customer> customers, int id)
         {
             string returnedCustomer = "";
             foreach (var person in customers)

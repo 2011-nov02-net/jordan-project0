@@ -63,13 +63,13 @@ namespace StoreApp.AppConsole
         }
         public static void printInventory(DataBase db)
         {
-            db.PrintStores(db);
+            db.PrintStores();
             Console.WriteLine("Choose a store number: ");
             db.searchStoreInventory(Convert.ToInt32(Console.ReadLine()));
         }
         public static void printOrderHistory(DataBase db)
         {
-            db.PrintStores(db);
+            db.PrintStores();
             Console.WriteLine("Choose a store number: ");
             db.searchStoreOrder(Convert.ToInt32(Console.ReadLine()));
         }
@@ -116,8 +116,8 @@ namespace StoreApp.AppConsole
 
         public static void addSampleData(DataBase db)
         {
-            Store Walmart = new Store(99999);
-            Store Target = new Store(99999);
+            Store Walmart = new Store(1,"23", "1", "2" ,  "324324");
+            Store Target = new Store(2, "23", "1", "2", "324324");
 
             db.AddStore(Walmart);
             db.AddStore(Target);
@@ -140,7 +140,7 @@ namespace StoreApp.AppConsole
 
 
             // making order
-            Order newOrder = new Order(db[0].getId(), "JJ", "James");
+            Order newOrder = new Order(db[0].StoreID ,"JJ", "James");
             newOrder.addItem(db[0].getInventory(0), 4);
             newOrder.addItem(db[0].getInventory(1), 2);
 
@@ -149,7 +149,7 @@ namespace StoreApp.AppConsole
 
             db.AddCustomer(new Customer("Joseph", "Joestar", "jj@gmail.com", "733-343-2314"));
             ///making order
-            Order Order2 = new Order(db[0].getId(), "Joseph", "Joestar");
+            Order Order2 = new Order(db[0].StoreID, "Joseph", "Joestar");
             Order2.addItem(db[0].getInventory(3), 2);
             Order2.addItem(db[0].getInventory(4), 2);
 

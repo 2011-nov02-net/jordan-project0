@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace Database.Library
+namespace StoreApp.DataModel
 {
     public partial class StoreDBContext : DbContext
     {
@@ -31,8 +31,6 @@ namespace Database.Library
             {
                 entity.ToTable("Customer");
 
-                entity.Property(e => e.CustomerId).ValueGeneratedNever();
-
                 entity.Property(e => e.Email).HasMaxLength(40);
 
                 entity.Property(e => e.FirstName)
@@ -49,25 +47,25 @@ namespace Database.Library
             modelBuilder.Entity<CustomerOrder>(entity =>
             {
                 entity.HasKey(e => e.TransactionNumber)
-                    .HasName("PK__Customer__E733A2BEEA874EE5");
+                    .HasName("PK__Customer__E733A2BEF58CF7B8");
 
                 entity.ToTable("CustomerOrder");
 
-                entity.Property(e => e.TransactionNumber).ValueGeneratedNever();
-
-                entity.Property(e => e.TransactionTime).HasColumnType("smalldatetime");
+                entity.Property(e => e.TransactionTime)
+                    .HasColumnType("smalldatetime")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.CustomerOrders)
                     .HasForeignKey(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__CustomerO__Custo__17C286CF");
+                    .HasConstraintName("FK__CustomerO__Custo__2DB1C7EE");
 
                 entity.HasOne(d => d.Store)
                     .WithMany(p => p.CustomerOrders)
                     .HasForeignKey(d => d.StoreId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__CustomerO__Store__16CE6296");
+                    .HasConstraintName("FK__CustomerO__Store__2CBDA3B5");
             });
 
             modelBuilder.Entity<Inventory>(entity =>
@@ -83,7 +81,7 @@ namespace Database.Library
                     .WithMany(p => p.Inventories)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Inventory__Produ__0C50D423");
+                    .HasConstraintName("FK__Inventory__Produ__22401542");
             });
 
             modelBuilder.Entity<Price>(entity =>
@@ -105,14 +103,12 @@ namespace Database.Library
                     .WithMany(p => p.Prices)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Price__ProductId__0880433F");
+                    .HasConstraintName("FK__Price__ProductId__1E6F845E");
             });
 
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.ToTable("Product");
-
-                entity.Property(e => e.ProductId).ValueGeneratedNever();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -132,20 +128,18 @@ namespace Database.Library
                     .WithMany(p => p.ProductOrdereds)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ProductOr__Produ__10216507");
+                    .HasConstraintName("FK__ProductOr__Produ__2610A626");
 
                 entity.HasOne(d => d.TransactionNumberNavigation)
                     .WithMany(p => p.ProductOrdereds)
                     .HasForeignKey(d => d.TransactionNumber)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ProductOr__Trans__18B6AB08");
+                    .HasConstraintName("FK__ProductOr__Trans__2EA5EC27");
             });
 
             modelBuilder.Entity<Store>(entity =>
             {
                 entity.ToTable("Store");
-
-                entity.Property(e => e.StoreId).ValueGeneratedNever();
 
                 entity.Property(e => e.City)
                     .IsRequired()
@@ -165,8 +159,7 @@ namespace Database.Library
 
                 entity.Property(e => e.Zip)
                     .IsRequired()
-                    .HasMaxLength(9)
-                    .HasColumnName("ZIP");
+                    .HasMaxLength(9);
             });
 
             OnModelCreatingPartial(modelBuilder);

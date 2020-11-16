@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Database.Library
+namespace StoreApp.DataModel
 {
-    public partial class Inventory
+    public partial class Price
     {
-        public int StoreId { get; set; }
         public int ProductId { get; set; }
-        public int? Quantity { get; set; }
+        public decimal Price1 { get; set; }
+        public DateTime StartTime { get; set; }
 
         public virtual Product Product { get; set; }
     }

@@ -1,30 +1,36 @@
 ﻿using StoreApp.Library;
+using StoreApp.DataModel;
 using System;
 using System.Collections.Generic;
 using StoreApp.Library.Location.Serialize;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System.Diagnostics;
+using System.IO;
 
 namespace StoreApp.AppConsole
 {
     class Program
     {
+        // 
+        static DbContextOptions<StoreDBContext> s_dbContextOptions;
+
         static void Main(string[] args)
-        { 
-            
-            DataBase db = new DataBase();
-            UserIntrerface.addSampleData(db);
+        {
+            // grab connection string and deserialize it
+            string connectionString =  ReadData.GetConnectionString();
 
-            Console.WriteLine("at the main Menu type 'q' to quit.");
-            Console.WriteLine("Need to (p)rint, (s)earch for customers, (a)dd a customer");
+            // log in using sql server
+            using var logStream = new StreamWriter("ef-logs.txt");
 
-            string userInput = Console.ReadLine();
+            var optionsBuilder = new DbContextOptionsBuilder<StoreDBContext>();
+            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.LogTo(logStream.WriteLine, LogLevel.Information);
 
-            while (userInput != "q")
-            {
-                UserIntrerface.selectScreen(db, userInput);
-                userInput = Console.ReadLine();
-            }
-            new WriteData(db, "db.json");
-            
+            s_dbContextOptions = optionsBuilder.Options;
+            StoreRepository db = new StoreRepository(s_dbContextOptions);
+
+            SqlConsoleUi.mainMenu(db);
 
         }
 

@@ -6,8 +6,8 @@ namespace StoreApp.Library
 {
     public class Customer
     {
+        public int CustomerId { get; set; }
         private static int customerIDSeed = 1;
-        public string CustomerId { get; set; }
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -16,7 +16,7 @@ namespace StoreApp.Library
     
         public Customer(string fName, string lName, string email, string phone)
         {
-            CustomerId = customerIDSeed.ToString();
+            CustomerId = customerIDSeed;
             FirstName = fName;
             LastName = lName;
             Email = email;
@@ -25,16 +25,19 @@ namespace StoreApp.Library
 
 
         }
-        public Customer(string id, string fName, string lName, string email, string phone)
+        public Customer(int id, string fName, string lName, string email, string phone)
         {
             CustomerId = id;
             FirstName = fName;
             LastName = lName;
             Email = email;
             Phone = phone;
-            customerIDSeed++;
+            customerIDSeed = CustomerId+1;
         }
-
+        public Customer(int id)
+        {
+            CustomerId = id;
+        }
         public string getCustomer()
         {
             return $"{CustomerId} {FirstName} {LastName} | {Email} | {Phone}";

@@ -12,7 +12,7 @@ namespace StoreApp.Library.Location.Search
         {
             foreach (var store in stores)
             {
-                if (store.getId() == storeId)
+                if (store.StoreID == storeId)
                     store.printInventory();
 
             }
@@ -21,7 +21,7 @@ namespace StoreApp.Library.Location.Search
         {
             foreach (var store in stores)
             {
-                if (store.getId() == storeId)
+                if (store.StoreID == storeId)
                     store.printOrders();
             }
 
