@@ -14,6 +14,9 @@ namespace StoreApp.Library
         public string CustLastName { get; set; }
         public string _timeStamp { get; private set; }
 
+        /// <summary>
+        /// Return the value of the timestamp
+        /// </summary>
         public string TimeStamp
         {
             set
@@ -21,10 +24,12 @@ namespace StoreApp.Library
                 _timeStamp = value;
             }
         }
-        
+        // initialize an item
         private List<Product> items = new List<Product>();
 
+        // random transaction number
         private static int transactionNumberSeed =21312345;
+        // automatically calculate the cost
         public double Cost
         {
             get
@@ -45,6 +50,11 @@ namespace StoreApp.Library
                 return localDate.ToString();
         }
 
+        /// <summary>
+        /// Add item, but first check if we have that item in stock.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="quanity"></param>
         public void addItem( Product item, int quanity)
         {
             Product boughtItem = new Product(item, quanity);
@@ -61,6 +71,7 @@ namespace StoreApp.Library
 
             items.Add(boughtItem);
         }
+        // add the item to the order.
         public void addItem(Product item)
         {
             items.Add(item);
@@ -82,6 +93,12 @@ namespace StoreApp.Library
 
             _timeStamp = setTime();
 
+        }
+        public Order(int storeId, int customerid)
+        {
+            StoreId = storeId;
+            CustomerId = customerid;
+            TransactionNumber = 9999;
         }
         /// <summary>
         /// A cunstructor for orders taht are read

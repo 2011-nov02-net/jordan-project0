@@ -14,6 +14,13 @@ namespace StoreApp.Library
         public string Email { get; set; }
         public string Phone { get; set; }
     
+        public Customer(Customer customer) {
+            CustomerId = customer.CustomerId;
+            FirstName = customer.FirstName;
+            LastName = customer.LastName;
+            Email = customer.Email;
+            Phone = customer.Phone;
+        }
         public Customer(string fName, string lName, string email, string phone)
         {
             CustomerId = customerIDSeed;
@@ -22,8 +29,6 @@ namespace StoreApp.Library
             Email = email;
             Phone = phone;
             customerIDSeed++;
-
-
         }
         public Customer(int id, string fName, string lName, string email, string phone)
         {
@@ -40,7 +45,7 @@ namespace StoreApp.Library
         }
         public string getCustomer()
         {
-            return $"{CustomerId} {FirstName} {LastName} | {Email} | {Phone}";
+            return $"ID: {CustomerId} | First Name: {FirstName} | Last Name: {LastName} | Email: {Email} | Phone: {Phone}";
         }
 
 

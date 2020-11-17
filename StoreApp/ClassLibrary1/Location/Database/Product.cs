@@ -27,6 +27,13 @@ namespace StoreApp.Library
             this.Quantity = quantity;
             this.Price = item.Price;
         }
+        /// <summary>
+        /// Create a Product for the use of debugging
+        /// </summary>
+        public Product()
+        {
+            ProductID = 0;
+        }
         public override string ToString()
         {
             return $"Product ID: {ProductID} | {Name} | Q: {Quantity} | price: {Price}";

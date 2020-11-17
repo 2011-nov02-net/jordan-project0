@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO.Compression;
 using StoreApp.Library;
 using StoreApp.Library.Printer;
+using System.Linq;
 
 
 namespace StoreApp.Library
@@ -82,7 +83,15 @@ namespace StoreApp.Library
         // reference store by inventory index
         public Product getInventory(int index)
         {
-            return inventory[index];
+            // use linq to find item.
+            var item = inventory.FirstOrDefault(o => o.ProductID ==index);
+            // if item does not exist return a product with an itemid of 0;
+            if (item == null)
+            {
+                Console.WriteLine("Item Not Found");
+                return new Product();
+            }
+            return item;
         }
 
         public void printInventory() => print.PrintGetInventory(inventory);

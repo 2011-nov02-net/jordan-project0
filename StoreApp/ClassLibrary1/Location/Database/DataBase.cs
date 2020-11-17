@@ -14,6 +14,11 @@ namespace StoreApp.Library
         private List<Store> _stores = new List<Store>();
         private List<Customer> _customers = new List<Customer>();
         private List<Order> _orders = new List<Order>();
+        // a database that returns nothing
+        public DataBase()
+        {
+
+        }
         // initialize a database with only customers
         public DataBase(List<Store> stores)
         {
