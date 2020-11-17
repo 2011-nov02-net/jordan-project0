@@ -20,8 +20,13 @@ namespace StoreApp.Library.Location.Search
                 if (person.FirstName.ToLower() == firstName.ToLower())
                 {
                     returnedCustomer+=person.getCustomer();
+                    returnedCustomer += "\n";
                 }
             }
+            // if we have an empty string return a not found string
+            if (String.IsNullOrEmpty(returnedCustomer))
+                return "No Customer with that name found";
+            // otherwise return to returning the name
             return returnedCustomer;
         }
         /// <summary>
@@ -38,6 +43,8 @@ namespace StoreApp.Library.Location.Search
                 if (person.LastName == lastName)
                 {
                     returnedCustomer += person.getCustomer();
+                    returnedCustomer += "\n";
+
                 }
             }
             if (String.IsNullOrEmpty(returnedCustomer))
@@ -50,17 +57,23 @@ namespace StoreApp.Library.Location.Search
         /// <param name="customers"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static Customer customerSearchID(List<Customer> customers, int id)
+        public static Customer customerSearchID(List<Customer> customers, string id)
         {
+            // try to parse the string if it's unparsable return a 0
+            int idCheck = 0;
+            bool result = int.TryParse(id, out idCheck);
+
+            // for each person in customers check and return customer if found
             foreach (var person in customers)
             {
-                if (person.CustomerId== id)
+                if (person.CustomerId== idCheck)
                 {
                     var returnedCustomer = new Customer(person);
                     return returnedCustomer;
                 }
             }
-            Console.WriteLine("No Customer With That Name found");
+            // print string customer not found return empty customer;
+            Console.WriteLine("No Customer With That ID found");
             return new Customer(0);
 
         }

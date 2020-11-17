@@ -30,6 +30,8 @@ namespace StoreApp.AppConsole
             s_dbContextOptions = optionsBuilder.Options;
             StoreRepository db = new StoreRepository(s_dbContextOptions);
 
+
+            // acess the main menu
             SqlConsoleUi.mainMenu(db);
 
         }

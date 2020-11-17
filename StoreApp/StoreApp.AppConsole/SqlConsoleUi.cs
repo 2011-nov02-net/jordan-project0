@@ -12,45 +12,67 @@ namespace StoreApp.AppConsole
     class SqlConsoleUi
     {
         static StoreRepository SqlDb;
+        /// <summary>
+        /// Main menu that starts with options to print search create
+        /// </summary>
+        /// <param name="DB"></param>
         public static void mainMenu(StoreRepository DB) {
             SqlDb = DB;
-            Console.WriteLine("at the main Menu type 'q' to quit.");
-            Console.WriteLine("Need to (p)rint, (s)earch for customers, (a)dd a customer (m)ake an order");
-            switch (Console.ReadLine().ToLower()) {
-                // Case Print
-                case "p":
-                    printMenu();
-                    break;
-                case "s":
-                    customerSearch();
-                    break;
-                case "m":
-                    makeOrder();
-                    break;
-                default:
-                    break;
-
+            string choice = "";
+            while (choice != "q"){
+                Console.WriteLine("at the main Menu type 'q' to quit.");
+                Console.WriteLine("Need to (p)rint, (s)earch for customers, (a)dd a customer (m)ake an order");
+                choice = Console.ReadLine().ToLower();
+                switch (choice)
+                {
+                    // Bring up print menu
+                    case "p":
+                        printMenu();
+                        break;
+                    // Bring up Customer Search
+                    case "s":
+                        customerSearch();
+                        break;
+                    // Create a new Customer
+                    case "a":
+                        CreateCustomer();
+                        break;
+                    // Create a new Order
+                    case "m":
+                        makeOrder();
+                        break;
+                    default:
+                        break;
+                }
             }
         }
+        /// <summary>
+        /// Menu that holds all the case statements for what you would like to print
+        /// </summary>
         public static void printMenu()
         {
             Console.WriteLine("At the Print Menu");
             Console.WriteLine("What do you want to print: (s)tores (c)ustomers (i)nventory (o)rders?");
 
+            // choose a case between any of these
             switch (Console.ReadLine().ToLower())
             {
+                // print all stores
                 case "s":
                     Console.WriteLine("-- Printing all Stores");
                     uiPrintAllStores();
                     break;
+                // print all customers
                 case "c":
                     Console.WriteLine("--- Printing All Customers ---");
                     uiPrintAllCustomers();
                     break;
+                // print all inventory of a store
                 case "i":
                     Console.WriteLine();
                     uiPrintStoreInventory();
                     break;
+                // go to print orders menu
                 case "o":
                     Console.WriteLine();
                     printOrdersMenu();
@@ -102,7 +124,8 @@ namespace StoreApp.AppConsole
                     break;
                 case "i":
                     Console.WriteLine("Enter an ID");
-                    Console.WriteLine(db.customerSearchID(Console.ReadLine()));
+                    Customer temp = db.customerSearchID(Console.ReadLine());
+                    Console.WriteLine(temp.ToString());
                     break;
                 default:
                     Console.WriteLine("Invalid Input");
@@ -153,7 +176,6 @@ namespace StoreApp.AppConsole
             Console.WriteLine("Choose a Store: ");
             Store store = SqlDb.GetOrderHistoryOfStore(Int32.Parse(Console.ReadLine()));
             store.printOrders();
-
         }
         public static void uiPrintCustomerOrders()
         {
@@ -168,7 +190,7 @@ namespace StoreApp.AppConsole
             DataBase db = SqlDb.GetOrder(Int32.Parse(Console.ReadLine()));
             db.PrintOrders();
         }
-        public static void UIaddCustomer(DataBase db)
+        public static void CreateCustomer()
         {
             Console.WriteLine("Enter Customer's First Name: ");
             string firstName = Console.ReadLine();
@@ -178,15 +200,17 @@ namespace StoreApp.AppConsole
             string email = Console.ReadLine();
             Console.WriteLine("Enter Customer's Phone: ");
             string phone = Console.ReadLine();
-            db.AddCustomer(new Customer(firstName, lastName, email, phone));
+            var customer = new Customer(firstName, lastName, email, phone);
+
+            SqlDb.AddCustomer(customer);
         }
         public static void makeOrder()
         {
-            Library.DataBase db = new Library.DataBase();
+            Library.DataBase databaseOrder = new Library.DataBase();
 
             List<Customer> customers = SqlDb.GetAllCustomers();
             Console.WriteLine("Enter a Customer ID");
-            int customerId = Int32.Parse(Console.ReadLine());
+            string customerId = Console.ReadLine();
 
             Customer customer = SearchCustomers.customerSearchID(customers, customerId);
 
@@ -195,7 +219,7 @@ namespace StoreApp.AppConsole
             int storeId = Int32.Parse(Console.ReadLine());
             Store store = SqlDb.GetInventory(storeId);
             // add store to our database
-            db.AddStore(store);
+            databaseOrder.AddStore(store);
 
             // making order
             Order newOrder = new Order(storeId, customer.CustomerId);
@@ -210,7 +234,7 @@ namespace StoreApp.AppConsole
                 if (choice !="q")
                 {
                     // using the only store in the database grab the product from the inventory
-                    var item = db[0].getInventory(Int32.Parse(choice));
+                    var item = databaseOrder[0].getInventory(Int32.Parse(choice));
 
                     Console.WriteLine("Choose a quantity: ");
 
@@ -223,16 +247,13 @@ namespace StoreApp.AppConsole
 
                         newOrder.addItem(item, quantityCheck);
                         Console.WriteLine("Your Total So Far is " + newOrder.Cost);
-
                     }
-
                 }
+                databaseOrder.Stores[0].AddOrder(newOrder);
 
             }
-            Console.WriteLine(newOrder.ToString()); 
-
-
-
+            int TransactionNumber = SqlDb.AddCustomerOrder(databaseOrder);
+            Console.WriteLine(newOrder.newOrderString(TransactionNumber));
         }
 
     }

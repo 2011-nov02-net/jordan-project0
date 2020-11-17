@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Globalization;
+using System.Linq;
 
 namespace StoreApp.Library
 {
     public class Order
     {
-        public int TransactionNumber{get; private set;}
+        public int TransactionNumber { get; private set; }
         public int StoreId { get; private set; }
         public int CustomerId { get; set; }
         public string CustFirstName { get; set; }
@@ -27,8 +28,13 @@ namespace StoreApp.Library
         // initialize an item
         private List<Product> items = new List<Product>();
 
+        public List<Product> getItems()
+        {
+            return items;
+        }
+
         // random transaction number
-        private static int transactionNumberSeed =21312345;
+        private static int transactionNumberSeed = 21312345;
         // automatically calculate the cost
         public double Cost
         {
@@ -42,12 +48,11 @@ namespace StoreApp.Library
                 return _cost;
             }
         }
-        public List<Product> Items => items;
 
         private string setTime()
         {
-                DateTime localDate = DateTime.Now;
-                return localDate.ToString();
+            DateTime localDate = DateTime.Now;
+            return localDate.ToString();
         }
 
         /// <summary>
@@ -55,13 +60,27 @@ namespace StoreApp.Library
         /// </summary>
         /// <param name="item"></param>
         /// <param name="quanity"></param>
-        public void addItem( Product item, int quanity)
+        public void addItem(Product item, int quanity)
         {
+            // create a copy of item
             Product boughtItem = new Product(item, quanity);
             if (item.Quantity >= quanity)
             {
                 item.updateQuantity(-quanity);
                 Console.WriteLine("item Added Successfully");
+
+                // check if we have the item in our cart first if not just add it
+                var itemCheck = items.FirstOrDefault(o => o.ProductID == item.ProductID);
+                if (itemCheck == null)
+                {
+                    items.Add(boughtItem);
+
+                }
+                else
+                {
+                    // if we have the item in our cart update the quantity
+                    itemCheck.updateQuantity(quanity);
+                }
             }
             else
             {
@@ -69,7 +88,6 @@ namespace StoreApp.Library
                 Console.WriteLine("Item not added, not enough in inventory");
             }
 
-            items.Add(boughtItem);
         }
         // add the item to the order.
         public void addItem(Product item)
@@ -117,7 +135,7 @@ namespace StoreApp.Library
             transactionNumberSeed++;
 
         }
-        public Order(int transactionId,  int storeId, int customerId , string custFirstName, string custLastName, string time)
+        public Order(int transactionId, int storeId, int customerId, string custFirstName, string custLastName, string time)
         {
             TransactionNumber = transactionId;
             StoreId = storeId;
@@ -158,9 +176,20 @@ namespace StoreApp.Library
         {
             return CustLastName;
         }
-        public override string ToString() {
+        public override string ToString()
+        {
             string data = "";
-            data = $"Store: {StoreId} | Transaction Number: {TransactionNumber} | {_timeStamp} | Customer ID: {CustomerId} | Cost: ${Cost}";
+            data = $"Store: {StoreId} | Transaction Number: {TransactionNumber} | {_timeStamp} | Customer ID: {CustomerId}";
+            foreach (var item in items)
+            {
+                data += "\n    " + item.ToString();
+            }
+            return data;
+        }
+        public string newOrderString(int transactionNumber)
+        {
+            string data = "";
+            data = $"Store: {StoreId} | Transaction Number: {transactionNumber} | {_timeStamp} | Customer ID: {CustomerId} | Cost: ${Cost}";
             foreach (var item in items)
             {
                 data += "\n    " + item.ToString();

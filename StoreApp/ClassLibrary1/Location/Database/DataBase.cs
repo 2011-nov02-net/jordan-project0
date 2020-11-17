@@ -80,7 +80,9 @@ namespace StoreApp.Library
         public void AddCustomer(Customer customer) => _customers.Add(customer);
         public string customerSearchFirstName(string fName) => SearchCustomers.customerSearchFirstName(_customers, fName);
         public string customerSearchLastName(string lName) => SearchCustomers.customerSearchLastName(_customers, lName);
-        public string customerSearchID(string id) => SearchCustomers.customerSearchFirstName(_customers, id);
+        public Customer customerSearchID(string id) => SearchCustomers.customerSearchID(_customers, id);
+        public Customer customerSearchID(List<Customer> customers, string id) => SearchCustomers.customerSearchID(customers, id);
+
         public void searchStoreInventory(int id)=> SearchStore.ReturnStoreInventory(Stores, id);
         public void searchStoreOrder(int id) => SearchStore.ReturnStoreOrderHistory(Stores, id);
     }

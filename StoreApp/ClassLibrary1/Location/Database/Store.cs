@@ -44,11 +44,12 @@ namespace StoreApp.Library
 
         //default constructor 
         //ADD MORE INFO FOR STORE
-        public Store (int storeid, string name, string street, string city, string zip)
+        public Store (int storeid, string name, string state, string street, string city, string zip)
         { 
             StoreSeed = StoreID+1;
             StoreID = storeid;
             Name = name;
+            State = state;
             Street = street;
             City = city;
             Zip = zip;
@@ -63,7 +64,7 @@ namespace StoreApp.Library
         // returns all the data in a string format
         public override string ToString()
         {
-            return $"ID: {StoreID} | {Name} | {State} | {City} |  {Zip}";
+            return $"ID: {StoreID} | {Name} | {State} | {City} | {Street} |  {Zip}";
         }
 
         // Add item to inventory to list
