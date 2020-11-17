@@ -171,15 +171,24 @@ namespace StoreApp.Library
         {
             return CustFirstName;
         }
-        // returns the last name
-        public string getLastName()
+
+        /// <summary>
+        /// If an order has no items in it, return falses otherwise return true;
+        /// </summary>
+        /// <returns></returns>
+        public bool hasItems()
         {
-            return CustLastName;
+            if(items.Count==0)
+            {
+                Console.WriteLine("Order Has No Items, No Transaction");
+                return false;
+            }
+            return true;
         }
         public override string ToString()
         {
             string data = "";
-            data = $"Store: {StoreId} | Transaction Number: {TransactionNumber} | {_timeStamp} | Customer ID: {CustomerId}";
+            data = $"Store: {StoreId} | Transaction Number: {TransactionNumber} | {_timeStamp} | Customer ID: {CustomerId} ";
             foreach (var item in items)
             {
                 data += "\n    " + item.ToString();

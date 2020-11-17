@@ -67,6 +67,11 @@ namespace StoreApp.Library
                 return _stores[index];
             }
         }
+        // returns the first order in the list. Useful when we have a database called with only one order.
+        public Order getFirstOrder()
+        {
+            return _orders[0];
+        }
 
 
         //Store methods

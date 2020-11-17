@@ -83,6 +83,10 @@ namespace StoreApp.AppConsole
 
             }
         }
+        /// <summary>
+        /// Contains printOrderMenu which can call all the print functions such as:
+        /// Store Orders, Customer Orders, and Individual Orders
+        /// </summary>
         public static void printOrdersMenu()
         {
             Console.WriteLine("At the Printing Order Menu: ");
@@ -90,15 +94,19 @@ namespace StoreApp.AppConsole
 
             switch (Console.ReadLine().ToLower())
             {
+                // print store orders
                 case "s":
                     uiPrintStoreOrders();
                     break;
+                // print customer orders
                 case "c":
                     uiPrintCustomerOrders();
                     break;
+                // print an individual order
                 case "o":
                     uiGetOrder();
                     break;
+                // go back to print menu after
                 default:
                     Console.WriteLine("Going back to print menu");
                     printMenu();
@@ -106,6 +114,9 @@ namespace StoreApp.AppConsole
             }
 
         }
+        /// <summary>
+        /// Customer Search grabs all the customers and uses the built in method to find customers.
+        /// </summary>
         public static void customerSearch()
         {
             List<Customer> customers = SqlDb.GetAllCustomers();
@@ -114,19 +125,23 @@ namespace StoreApp.AppConsole
             string choice = Console.ReadLine().ToLower();
             switch (choice)
             {
+                // search by first name
                 case "f":
                     Console.WriteLine("enter a first name");
                     Console.WriteLine(db.customerSearchFirstName(Console.ReadLine()));
                     break;
+                // search by last name
                 case "l":
                     Console.WriteLine("Enter a Last Name");
                     Console.WriteLine(db.customerSearchLastName(Console.ReadLine()));
                     break;
+                // search by id
                 case "i":
                     Console.WriteLine("Enter an ID");
                     Customer temp = db.customerSearchID(Console.ReadLine());
                     Console.WriteLine(temp.ToString());
                     break;
+                // go back to main menut
                 default:
                     Console.WriteLine("Invalid Input");
                     break;
@@ -165,6 +180,7 @@ namespace StoreApp.AppConsole
             Console.WriteLine("Choose a Store: ");
 
             Store store = SqlDb.GetInventory(Int32.Parse(Console.ReadLine()));
+
             store.printInventory();
             return store;
         
@@ -188,7 +204,8 @@ namespace StoreApp.AppConsole
         {
             Console.WriteLine("Enter a Transaction Number: ");
             DataBase db = SqlDb.GetOrder(Int32.Parse(Console.ReadLine()));
-            db.PrintOrders();
+            Order order = db.getFirstOrder();
+            Console.WriteLine(order.newOrderString(order.TransactionNumber));
         }
         public static void CreateCustomer()
         {
@@ -200,60 +217,91 @@ namespace StoreApp.AppConsole
             string email = Console.ReadLine();
             Console.WriteLine("Enter Customer's Phone: ");
             string phone = Console.ReadLine();
+
             var customer = new Customer(firstName, lastName, email, phone);
 
-            SqlDb.AddCustomer(customer);
+            if (customer.isValid())
+            {
+                SqlDb.AddCustomer(customer);
+                Console.WriteLine("Customer Added" );
+            }
+            else
+            {
+                Console.WriteLine("Customer does not meet one of the guidelines.");
+            }
         }
         public static void makeOrder()
         {
-            Library.DataBase databaseOrder = new Library.DataBase();
-
+            // get all of the customers
             List<Customer> customers = SqlDb.GetAllCustomers();
+            Library.DataBase db = new Library.DataBase(customers);
+
+            // Print a list of the customers
+            db.printCustomers();
             Console.WriteLine("Enter a Customer ID");
             string customerId = Console.ReadLine();
 
+            // select your customer
             Customer customer = SearchCustomers.customerSearchID(customers, customerId);
 
-            // get the store information
-            Console.WriteLine("Choose a Store: " );
-            int storeId = Int32.Parse(Console.ReadLine());
-            Store store = SqlDb.GetInventory(storeId);
-            // add store to our database
-            databaseOrder.AddStore(store);
-
-            // making order
-            Order newOrder = new Order(storeId, customer.CustomerId);
-            store.printInventory();
-
-            Console.WriteLine("Starting order press (q) to quit");
-            string choice = "";
-            while (choice.ToLower() != "q")
+            // don'd continue unless the person actually put in a correct customer id.
+            if (customer.isValid())
             {
-                Console.WriteLine("Choose a Product");
-                choice = Console.ReadLine();
-                if (choice !="q")
+                // get the store information
+                uiPrintAllStores();
+                Console.WriteLine("Choose a Store: ");
+                int storeId = Int32.Parse(Console.ReadLine());
+                Store store = SqlDb.GetInventory(storeId);
+                if (store.hasInventory())
                 {
-                    // using the only store in the database grab the product from the inventory
-                    var item = databaseOrder[0].getInventory(Int32.Parse(choice));
+                    // add store to our database
+                    db.AddStore(store);
 
-                    Console.WriteLine("Choose a quantity: ");
+                    // making order
+                    Order newOrder = new Order(storeId, customer.CustomerId);
+                    store.printInventory();
 
-                    //give user a chance to escape one more time
-                    string quantity = Console.ReadLine();
-                    if (quantity != "q")
+                    Console.WriteLine("Starting order press (q) to quit");
+                    string choice = "";
+                    while (choice.ToLower() != "q")
                     {
-                        int quantityCheck = 0;
-                        bool result = int.TryParse(quantity, out quantityCheck);
+                        Console.WriteLine("Choose a Product");
+                        choice = Console.ReadLine();
+                        if (choice != "q")
+                        {
+                            int choiceCheck = 0;
+                            int.TryParse(choice, out choiceCheck);
 
-                        newOrder.addItem(item, quantityCheck);
-                        Console.WriteLine("Your Total So Far is " + newOrder.Cost);
+                            // using the only store in the database grab the product from the inventory
+                            var item = db[0].getInventory(choiceCheck);
+
+                            Console.WriteLine("Choose a quantity: ");
+
+                            //give user a chance to escape one more time
+                            string quantity = Console.ReadLine();
+                            if (quantity != "q")
+                            {
+
+                                int quantityCheck = 0;
+                                int.TryParse(quantity, out quantityCheck);
+
+                                newOrder.addItem(item, quantityCheck);
+                                Console.WriteLine("Your Total So Far is " + newOrder.Cost);
+                            }
+                        }
+
+                        db.Stores[0].AddOrder(newOrder);
+
                     }
-                }
-                databaseOrder.Stores[0].AddOrder(newOrder);
+                    // if we have items in our order submit to database
+                    if (newOrder.hasItems())
+                    {
+                        int TransactionNumber = SqlDb.AddCustomerOrder(db);
+                        Console.WriteLine(newOrder.newOrderString(TransactionNumber));
+                    }
 
+                }
             }
-            int TransactionNumber = SqlDb.AddCustomerOrder(databaseOrder);
-            Console.WriteLine(newOrder.newOrderString(TransactionNumber));
         }
 
     }

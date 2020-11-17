@@ -61,18 +61,13 @@ namespace StoreApp.Library
         {
             StoreID = storeid;
         }
-        // returns all the data in a string format
-        public override string ToString()
-        {
-            return $"ID: {StoreID} | {Name} | {State} | {City} | {Street} |  {Zip}";
-        }
+
 
         // Add item to inventory to list
         public void AddInventory(Product item)
         {
             inventory.Add(item);
         }
-        // Add customer to list
 
         // add order to order History
         public void AddOrder(Order transaction)
@@ -98,6 +93,13 @@ namespace StoreApp.Library
         public void printInventory() => print.PrintGetInventory(inventory);
         public void printOrders() => print.PrintOrderHistory(orderHistory);
 
+        /// <summary>
+        /// Search Method that checks if an item exists within a store. Update quantity if it exists.
+        /// If the search is successful print Success message otherwise print error message.
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="quantity"></param>
+        /// <param name="choice"></param>
         public void Search(int ID, int quantity, string choice)
         {
             bool searchSuccess = false;
@@ -118,8 +120,32 @@ namespace StoreApp.Library
                 print.PrintAddedItemUnsucessfull();
         }
 
-        // Delegaters
-
+        /// <summary>
+        /// Have a check statement to see if this is a real store. A real store should at least have a name.
+        /// </summary>
+        /// <returns>True or False</returns>
+        public bool isValid()
+        {
+            if(String.IsNullOrEmpty(Name)) {
+                Console.WriteLine("Not a Valid Store");
+                return false;
+            }
+            return true;
+        }
+        public bool hasInventory()
+        {
+            if (Inventory.Count==0)
+            {
+                Console.WriteLine("This Store has no Inventory");
+                return false;
+            }
+            return true;
+        }
+        // returns all the data in a string format
+        public override string ToString()
+        {
+            return $"ID: {StoreID} | {Name} | {State} | {City} | {Street} |  {Zip}";
+        }
 
     }
 }

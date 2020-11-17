@@ -94,9 +94,10 @@ namespace StoreApp.AppConsole
                     Quantity = trans.Quantity
                 };
                 context.Add(newItem);
+
+                // update inventory
                 var dbInvetory = context.Inventories.First(i => i.ProductId == trans.ProductID && i.StoreId == order.StoreId);
                 dbInvetory.Quantity -= trans.Quantity;
-
             }
             context.SaveChanges();
         }
