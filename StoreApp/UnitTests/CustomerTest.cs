@@ -26,7 +26,9 @@ namespace UnitTests
             Customer hasName = new Customer(0, "Jordan", "Garcia", "jj@gmail.com", "2832239");
             Assert.True(hasName.isValid());
         }
-
+        /// <summary>
+        /// Tests to see if the Customers are Equal.
+        /// </summary>
         [Fact]
         public void CustomerSearch()
         {
@@ -38,7 +40,7 @@ namespace UnitTests
 
             Assert.Equal(person.FirstName, indexedPerson.FirstName);
             Assert.Equal(person.LastName, indexedPerson.LastName);
-
+            Assert.Equal(person.Email, indexedPerson.Email);
 
         }
 

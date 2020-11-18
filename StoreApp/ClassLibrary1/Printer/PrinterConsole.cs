@@ -40,7 +40,10 @@ namespace StoreApp.Library.Printer
             foreach(var order in orderHistory)
             {
                 Console.WriteLine(order.ToString());
-
+            }
+            if (orderHistory.Count == 0)
+            {
+                Console.WriteLine("There are no Orders to be printed.");
             }
         }
         public void PrintCustomersOrders(List<Order> orderHistory)

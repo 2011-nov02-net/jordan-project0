@@ -74,7 +74,6 @@ namespace StoreApp.Library
                 if (itemCheck == null)
                 {
                     items.Add(boughtItem);
-
                 }
                 else
                 {

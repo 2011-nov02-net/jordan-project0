@@ -250,15 +250,18 @@ namespace StoreApp.AppConsole
                 // get the store information
                 uiPrintAllStores();
                 Console.WriteLine("Choose a Store: ");
-                int storeId = Int32.Parse(Console.ReadLine());
-                Store store = SqlDb.GetInventory(storeId);
+
+                int StoreChoiceCheck = 0;
+                string StoreChoice = Console.ReadLine();
+                Int32.TryParse(StoreChoice, out StoreChoiceCheck);
+                Store store = SqlDb.GetInventory(StoreChoiceCheck);
                 if (store.hasInventory())
                 {
                     // add store to our database
                     db.AddStore(store);
 
                     // making order
-                    Order newOrder = new Order(storeId, customer.CustomerId);
+                    Order newOrder = new Order(StoreChoiceCheck, customer.CustomerId);
                     store.printInventory();
 
                     Console.WriteLine("Starting order press (q) to quit");
@@ -267,26 +270,36 @@ namespace StoreApp.AppConsole
                     {
                         Console.WriteLine("Choose a Product");
                         choice = Console.ReadLine();
-                        if (choice != "q")
+                        if (choice != "q" && choice!="q")
                         {
                             int choiceCheck = 0;
                             int.TryParse(choice, out choiceCheck);
-
-                            // using the only store in the database grab the product from the inventory
-                            var item = db[0].getInventory(choiceCheck);
-
-                            Console.WriteLine("Choose a quantity: ");
-
-                            //give user a chance to escape one more time
-                            string quantity = Console.ReadLine();
-                            if (quantity != "q")
+                            // if user actually inserts a number
+                            if (choiceCheck != 0)
                             {
+                                // using the only store in the database grab the product from the inventory
+                                var item = db[0].getInventory(choiceCheck);
 
-                                int quantityCheck = 0;
-                                int.TryParse(quantity, out quantityCheck);
 
-                                newOrder.addItem(item, quantityCheck);
-                                Console.WriteLine("Your Total So Far is " + newOrder.Cost);
+                                //give user a chance to escape one more time
+                                string quantity = "";
+                                if (quantity != "q" && choice != "q" && item.ProductID !=0)
+                                {
+                                    Console.WriteLine("Choose a quantity: ");
+                                    quantity = Console.ReadLine();
+                                    int quantityCheck = 0;
+                                    int.TryParse(quantity, out quantityCheck);
+                                    if (quantityCheck != 0)
+                                    {
+                                        newOrder.addItem(item, quantityCheck);
+                                        Console.WriteLine("Your Total So Far is " + newOrder.Cost);
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Quanity Must be greater than 0");
+                                    }
+
+                                }
                             }
                         }
 

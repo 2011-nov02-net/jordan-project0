@@ -73,7 +73,6 @@ namespace StoreApp.Library
         public void AddOrder(Order transaction)
         {
             orderHistory.Add(transaction);
-            print.PrintAddOrder(transaction);
 
         }
         // reference store by inventory index
@@ -85,7 +84,7 @@ namespace StoreApp.Library
             if (item == null)
             {
                 Console.WriteLine("Item Not Found");
-                return new Product();
+                return new Product(0, "Nothing" , 0, 0);
             }
             return item;
         }

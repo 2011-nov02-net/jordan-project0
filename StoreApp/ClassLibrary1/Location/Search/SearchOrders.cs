@@ -6,15 +6,14 @@ namespace StoreApp.Library.Location.Search
 {
     class SearchOrders
     {
-        public string SearchOrdersByFirstName(List<Order> orderHistory, string fName)
+        public static Order SearchOrdersByFirstName(List<Order> orderHistory, string fName)
         {
-            string returnedOrder = "";
             foreach(var order in orderHistory)
             {
                 if (fName == order.getFirstName())
-                    returnedOrder = order.ToString();
+                    return order;
             }
-            return returnedOrder;
+            return new Order(0,0);
 
         }
 
