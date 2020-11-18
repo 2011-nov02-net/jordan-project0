@@ -1,0 +1,241 @@
+info: 11/18/2020 07:38:12.845 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:38:13.770 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (88ms) [Parameters=[@p0='?' (Size = 40), @p1='?' (Size = 28), @p2='?' (Size = 28), @p3='?' (Size = 12)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      INSERT INTO [Customer] ([Email], [FirstName], [LastName], [Phone])
+      VALUES (@p0, @p1, @p2, @p3);
+      SELECT [CustomerId]
+      FROM [Customer]
+      WHERE @@ROWCOUNT = 1 AND [CustomerId] = scope_identity();
+info: 11/18/2020 07:38:17.917 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:38:18.111 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (63ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[CustomerId], [c].[Email], [c].[FirstName], [c].[LastName], [c].[Phone]
+      FROM [Customer] AS [c]
+info: 11/18/2020 07:39:15.891 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:39:15.932 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (40ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[CustomerId], [c].[Email], [c].[FirstName], [c].[LastName], [c].[Phone]
+      FROM [Customer] AS [c]
+info: 11/18/2020 07:40:14.908 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:40:14.947 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (38ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[CustomerId], [c].[Email], [c].[FirstName], [c].[LastName], [c].[Phone]
+      FROM [Customer] AS [c]
+info: 11/18/2020 07:40:21.933 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:40:21.974 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (36ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[StoreId], [s].[City], [s].[Name], [s].[State], [s].[Street], [s].[Zip]
+      FROM [Store] AS [s]
+info: 11/18/2020 07:40:24.417 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:40:24.601 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (61ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [i].[StoreId], [i].[ProductId], [i].[Quantity], [p].[ProductId], [p].[Name], [p0].[ProductId], [p0].[StartTime], [p0].[Price]
+      FROM [Inventory] AS [i]
+      INNER JOIN [Product] AS [p] ON [i].[ProductId] = [p].[ProductId]
+      LEFT JOIN [Price] AS [p0] ON [p].[ProductId] = [p0].[ProductId]
+      ORDER BY [i].[StoreId], [i].[ProductId], [p].[ProductId], [p0].[ProductId], [p0].[StartTime]
+info: 11/18/2020 07:48:49.765 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:48:50.256 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (55ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[CustomerId], [c].[Email], [c].[FirstName], [c].[LastName], [c].[Phone]
+      FROM [Customer] AS [c]
+info: 11/18/2020 07:48:52.017 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:48:52.074 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (56ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[StoreId], [s].[City], [s].[Name], [s].[State], [s].[Street], [s].[Zip]
+      FROM [Store] AS [s]
+info: 11/18/2020 07:48:54.949 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:48:55.010 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (60ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[StoreId], [s].[City], [s].[Name], [s].[State], [s].[Street], [s].[Zip]
+      FROM [Store] AS [s]
+info: 11/18/2020 07:48:57.181 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:48:57.258 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (75ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [i].[StoreId], [i].[ProductId], [i].[Quantity], [p].[ProductId], [p].[Name], [p0].[ProductId], [p0].[StartTime], [p0].[Price]
+      FROM [Inventory] AS [i]
+      INNER JOIN [Product] AS [p] ON [i].[ProductId] = [p].[ProductId]
+      LEFT JOIN [Price] AS [p0] ON [p].[ProductId] = [p0].[ProductId]
+      ORDER BY [i].[StoreId], [i].[ProductId], [p].[ProductId], [p0].[ProductId], [p0].[StartTime]
+info: 11/18/2020 07:49:05.101 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:49:05.148 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (46ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[StoreId], [s].[City], [s].[Name], [s].[State], [s].[Street], [s].[Zip]
+      FROM [Store] AS [s]
+info: 11/18/2020 07:49:06.253 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:49:06.309 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (45ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[TransactionNumber], [c].[CustomerId], [c].[StoreId], [c].[TransactionTime], [c0].[CustomerId], [c0].[Email], [c0].[FirstName], [c0].[LastName], [c0].[Phone]
+      FROM [CustomerOrder] AS [c]
+      INNER JOIN [Customer] AS [c0] ON [c].[CustomerId] = [c0].[CustomerId]
+info: 11/18/2020 07:49:14.746 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+warn: 11/18/2020 07:49:14.751 RelationalEventId.MultipleCollectionIncludeWarning[20504] (Microsoft.EntityFrameworkCore.Query) 
+      Compiling a query which loads related collections for more than one collection navigation either via 'Include' or through projection but no 'QuerySplittingBehavior' has been configured. By default Entity Framework will use 'QuerySplittingBehavior.SingleQuery' which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'
+info: 11/18/2020 07:49:14.845 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (74ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[TransactionNumber], [c].[CustomerId], [c].[StoreId], [c].[TransactionTime], [t].[TransactionNumber], [t].[ProductId], [t].[Quantity], [t].[ProductId0], [t].[Name], [t].[ProductId1], [t].[StartTime], [t].[Price]
+      FROM [CustomerOrder] AS [c]
+      LEFT JOIN (
+          SELECT [p].[TransactionNumber], [p].[ProductId], [p].[Quantity], [p0].[ProductId] AS [ProductId0], [p0].[Name], [p1].[ProductId] AS [ProductId1], [p1].[StartTime], [p1].[Price]
+          FROM [ProductOrdered] AS [p]
+          INNER JOIN [Product] AS [p0] ON [p].[ProductId] = [p0].[ProductId]
+          LEFT JOIN [Price] AS [p1] ON [p0].[ProductId] = [p1].[ProductId]
+      ) AS [t] ON [c].[TransactionNumber] = [t].[TransactionNumber]
+      ORDER BY [c].[TransactionNumber], [t].[TransactionNumber], [t].[ProductId], [t].[ProductId0], [t].[ProductId1], [t].[StartTime]
+info: 11/18/2020 07:49:32.805 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:49:32.882 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (76ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[CustomerId], [c].[Email], [c].[FirstName], [c].[LastName], [c].[Phone]
+      FROM [Customer] AS [c]
+info: 11/18/2020 07:49:50.420 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:49:50.471 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (50ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[CustomerId], [c].[Email], [c].[FirstName], [c].[LastName], [c].[Phone]
+      FROM [Customer] AS [c]
+info: 11/18/2020 07:49:56.321 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:49:56.396 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (74ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[StoreId], [s].[City], [s].[Name], [s].[State], [s].[Street], [s].[Zip]
+      FROM [Store] AS [s]
+info: 11/18/2020 07:50:03.237 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:50:03.300 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (62ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [i].[StoreId], [i].[ProductId], [i].[Quantity], [p].[ProductId], [p].[Name], [p0].[ProductId], [p0].[StartTime], [p0].[Price]
+      FROM [Inventory] AS [i]
+      INNER JOIN [Product] AS [p] ON [i].[ProductId] = [p].[ProductId]
+      LEFT JOIN [Price] AS [p0] ON [p].[ProductId] = [p0].[ProductId]
+      ORDER BY [i].[StoreId], [i].[ProductId], [p].[ProductId], [p0].[ProductId], [p0].[StartTime]
+info: 11/18/2020 07:55:29.790 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:55:29.839 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (49ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[CustomerId], [c].[Email], [c].[FirstName], [c].[LastName], [c].[Phone]
+      FROM [Customer] AS [c]
+info: 11/18/2020 07:55:34.546 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:55:34.611 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (65ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[StoreId], [s].[City], [s].[Name], [s].[State], [s].[Street], [s].[Zip]
+      FROM [Store] AS [s]
+info: 11/18/2020 07:55:44.653 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:55:44.720 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (66ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[StoreId], [s].[City], [s].[Name], [s].[State], [s].[Street], [s].[Zip]
+      FROM [Store] AS [s]
+info: 11/18/2020 07:55:45.525 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:55:45.580 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (54ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [i].[StoreId], [i].[ProductId], [i].[Quantity], [p].[ProductId], [p].[Name], [p0].[ProductId], [p0].[StartTime], [p0].[Price]
+      FROM [Inventory] AS [i]
+      INNER JOIN [Product] AS [p] ON [i].[ProductId] = [p].[ProductId]
+      LEFT JOIN [Price] AS [p0] ON [p].[ProductId] = [p0].[ProductId]
+      ORDER BY [i].[StoreId], [i].[ProductId], [p].[ProductId], [p0].[ProductId], [p0].[StartTime]
+info: 11/18/2020 07:56:06.745 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:56:06.807 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (61ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[CustomerId], [c].[Email], [c].[FirstName], [c].[LastName], [c].[Phone]
+      FROM [Customer] AS [c]
+info: 11/18/2020 07:56:13.289 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:56:13.357 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (67ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[CustomerId], [c].[Email], [c].[FirstName], [c].[LastName], [c].[Phone]
+      FROM [Customer] AS [c]
+info: 11/18/2020 07:56:31.265 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:56:31.308 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (42ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[StoreId], [s].[City], [s].[Name], [s].[State], [s].[Street], [s].[Zip]
+      FROM [Store] AS [s]
+info: 11/18/2020 07:56:32.669 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:56:32.743 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (73ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [i].[StoreId], [i].[ProductId], [i].[Quantity], [p].[ProductId], [p].[Name], [p0].[ProductId], [p0].[StartTime], [p0].[Price]
+      FROM [Inventory] AS [i]
+      INNER JOIN [Product] AS [p] ON [i].[ProductId] = [p].[ProductId]
+      LEFT JOIN [Price] AS [p0] ON [p].[ProductId] = [p0].[ProductId]
+      ORDER BY [i].[StoreId], [i].[ProductId], [p].[ProductId], [p0].[ProductId], [p0].[StartTime]
+info: 11/18/2020 07:57:31.446 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:57:31.521 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (35ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      INSERT INTO [CustomerOrder] ([CustomerId], [StoreId])
+      VALUES (@p0, @p1);
+      SELECT [TransactionNumber], [TransactionTime]
+      FROM [CustomerOrder]
+      WHERE @@ROWCOUNT = 1 AND [TransactionNumber] = scope_identity();
+info: 11/18/2020 07:57:31.593 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:57:31.640 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (36ms) [Parameters=[@__trans_ProductID_0='?' (DbType = Int32), @__8__locals1_order_StoreId_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [i].[StoreId], [i].[ProductId], [i].[Quantity]
+      FROM [Inventory] AS [i]
+      WHERE ([i].[ProductId] = @__trans_ProductID_0) AND ([i].[StoreId] = @__8__locals1_order_StoreId_1)
+info: 11/18/2020 07:57:31.735 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (46ms) [Parameters=[@p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      UPDATE [Inventory] SET [Quantity] = @p0
+      WHERE [ProductId] = @p1 AND [StoreId] = @p2;
+      SELECT @@ROWCOUNT;
+info: 11/18/2020 07:57:31.781 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (46ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      INSERT INTO [ProductOrdered] ([ProductId], [TransactionNumber], [Quantity])
+      VALUES (@p0, @p1, @p2);
+info: 11/18/2020 07:57:55.994 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:57:56.061 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (67ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[StoreId], [s].[City], [s].[Name], [s].[State], [s].[Street], [s].[Zip]
+      FROM [Store] AS [s]
+info: 11/18/2020 07:57:58.247 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:57:58.306 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (58ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [i].[StoreId], [i].[ProductId], [i].[Quantity], [p].[ProductId], [p].[Name], [p0].[ProductId], [p0].[StartTime], [p0].[Price]
+      FROM [Inventory] AS [i]
+      INNER JOIN [Product] AS [p] ON [i].[ProductId] = [p].[ProductId]
+      LEFT JOIN [Price] AS [p0] ON [p].[ProductId] = [p0].[ProductId]
+      ORDER BY [i].[StoreId], [i].[ProductId], [p].[ProductId], [p0].[ProductId], [p0].[StartTime]
+info: 11/18/2020 07:58:19.422 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:58:19.455 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (33ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[TransactionNumber], [c].[CustomerId], [c].[StoreId], [c].[TransactionTime], [t].[TransactionNumber], [t].[ProductId], [t].[Quantity], [t].[ProductId0], [t].[Name], [t].[ProductId1], [t].[StartTime], [t].[Price]
+      FROM [CustomerOrder] AS [c]
+      LEFT JOIN (
+          SELECT [p].[TransactionNumber], [p].[ProductId], [p].[Quantity], [p0].[ProductId] AS [ProductId0], [p0].[Name], [p1].[ProductId] AS [ProductId1], [p1].[StartTime], [p1].[Price]
+          FROM [ProductOrdered] AS [p]
+          INNER JOIN [Product] AS [p0] ON [p].[ProductId] = [p0].[ProductId]
+          LEFT JOIN [Price] AS [p1] ON [p0].[ProductId] = [p1].[ProductId]
+      ) AS [t] ON [c].[TransactionNumber] = [t].[TransactionNumber]
+      ORDER BY [c].[TransactionNumber], [t].[TransactionNumber], [t].[ProductId], [t].[ProductId0], [t].[ProductId1], [t].[StartTime]
+info: 11/18/2020 07:58:40.074 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 5.0.0 initialized 'StoreDBContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+info: 11/18/2020 07:58:40.136 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (61ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[CustomerId], [c].[Email], [c].[FirstName], [c].[LastName], [c].[Phone]
+      FROM [Customer] AS [c]

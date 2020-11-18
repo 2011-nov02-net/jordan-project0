@@ -52,7 +52,7 @@ namespace StoreApp.AppConsole
         public static void printMenu()
         {
             Console.WriteLine("At the Print Menu");
-            Console.WriteLine("What do you want to print: (s)tores (c)ustomers (i)nventory (o)rders?");
+            Console.WriteLine("What do you want to print: (c)ustomers (s)tores  (i)nventory (o)rders?");
 
             // choose a case between any of these
             switch (Console.ReadLine().ToLower())
