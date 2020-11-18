@@ -8,12 +8,40 @@ namespace UnitTests
 {
     public class CustomerTest
     {
+        /// <summary>
+        /// Tests for the validity of our customers should return false
+        /// </summary>
         [Fact]
-        public void ValidCustomer()
+        public void NotValidCustomer()
         {
             Customer NoName = new Customer(2);
             Assert.False(NoName.isValid());
         }
+        /// <summary>
+        /// Tests for the validity of our customers should return True
+        /// </summary>
+        [Fact]
+        public void ValidCustoemr()
+        {
+            Customer hasName = new Customer(0, "Jordan", "Garcia", "jj@gmail.com", "2832239");
+            Assert.True(hasName.isValid());
+        }
+
+        [Fact]
+        public void CustomerSearch()
+        {
+            DataBase db = new DataBase();
+            Customer person = new Customer(1, "Nick", "Fury", "nf@gmail.com", "23143425");
+            db.AddCustomer(person);
+
+            Customer indexedPerson = db.customerSearchID("1");
+
+            Assert.Equal(person.FirstName, indexedPerson.FirstName);
+            Assert.Equal(person.LastName, indexedPerson.LastName);
+
+
+        }
+
 
     }
 }
