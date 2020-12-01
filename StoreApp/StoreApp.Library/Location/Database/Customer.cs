@@ -7,7 +7,6 @@ namespace StoreApp.Library
     /// <summary>
     /// Customer class which holds different ways to call a customer
     /// includes search methdos and print methods. Each customer requires a Name
-    //
     /// </summary>
     public class Customer
     {
