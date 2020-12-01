@@ -107,4 +107,3 @@ Values (1,1), (1,2), (1,3),(2,4), (2,1)
 Insert into ProductOrdered Values
 (1,1,1),(1,2,3),(1,3,1),(1,4,17);
 
-Select

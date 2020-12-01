@@ -37,7 +37,7 @@ namespace UnitTests
             db.AddCustomer(person);
 
             Customer indexedPerson = db.customerSearchID("1");
-
+                    
             Assert.Equal(person.FirstName, indexedPerson.FirstName);
             Assert.Equal(person.LastName, indexedPerson.LastName);
             Assert.Equal(person.Email, indexedPerson.Email);
